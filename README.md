@@ -9,7 +9,7 @@
   <a href="https://black.readthedocs.io/en/stable/"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-black.svg?style=for-the-badge"></a>
 </p>
 
-This repo contains all the code used for the assignment of the course Applied Deep Learning at TU Wien. To encourage best practices and promote code quality, we leverage the [PyTorch Lightning Template](https://github.com/edobobo/p-lightning-template) to avoid writing boilerplate code. All the experiments are logged using [Weights & Biases](https://wandb.ai/site). To have a quick overview of the status of this project visit the related [project board](https://github.com/LeonardoEmili/neural-wsd/projects/1).
+This repo contains all the code used for the assignment of the course Applied Deep Learning at Vienna University of Technology. To encourage best practices and promote code quality, we leverage the [PyTorch Lightning Template](https://github.com/edobobo/p-lightning-template) to avoid writing boilerplate code. All the experiments are logged using [Weights & Biases](https://wandb.ai/site). To have a quick overview of the status of this project visit the related [project board](https://github.com/LeonardoEmili/neural-wsd/projects/1).
 
 ## Repository Structure
 ```
