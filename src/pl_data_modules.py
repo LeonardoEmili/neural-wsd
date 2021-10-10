@@ -11,7 +11,6 @@ from src.dataset import SenseAnnotatedDataset
 from transformers import AutoTokenizer
 
 
-
 class BasePLDataModule(pl.LightningDataModule):
     """
     FROM LIGHTNING DOCUMENTATION
@@ -59,20 +58,23 @@ class BasePLDataModule(pl.LightningDataModule):
         self.conf = conf
 
     def prepare_data(self, *args, **kwargs):
-        raise NotImplementedError
+        print(os.getcwd())
+        # os.system("bash download_dataset.sh")
 
     def setup(self, stage: Optional[str] = None):
         self.tokenizer = AutoTokenizer.from_pretrained(self.conf.model.tokenizer)
-        self.train_dataset = SenseAnnotatedDataset(self.conf, name='semcor', tokenizer=self.tokenizer)
-        #self.valid_dataset = SenseAnnotatedDataset(self.conf, name='semeval2007', tokenizer=self.tokenizer)
-        #self.test_dataset = SenseAnnotatedDataset(self.conf, name='semevalALL', tokenizer=self.tokenizer)
+        self.train_dataset = SenseAnnotatedDataset(
+            self.conf, name="semcor", tokenizer=self.tokenizer
+        )
+        # self.valid_dataset = SenseAnnotatedDataset(self.conf, name='semeval2007', tokenizer=self.tokenizer)
+        # self.test_dataset = SenseAnnotatedDataset(self.conf, name='semevalALL', tokenizer=self.tokenizer)
 
     def train_dataloader(self, *args, **kwargs) -> DataLoader:
         return DataLoader(
             self.train_dataset,
             num_workers=self.conf.data.num_workers,
             batch_size=self.conf.data.batch_size,
-            shuffle=True
+            shuffle=True,
         )
 
     def val_dataloader(self, *args, **kwargs) -> Union[DataLoader, List[DataLoader]]:
@@ -80,7 +82,7 @@ class BasePLDataModule(pl.LightningDataModule):
             self.valid_dataset,
             num_workers=self.conf.data.num_workers,
             batch_size=self.conf.data.batch_size,
-            shuffle=False
+            shuffle=False,
         )
 
     def test_dataloader(self, *args, **kwargs) -> Union[DataLoader, List[DataLoader]]:
@@ -88,7 +90,7 @@ class BasePLDataModule(pl.LightningDataModule):
             self.test_dataset,
             num_workers=self.conf.data.num_workers,
             batch_size=self.conf.data.batch_size,
-            shuffle=False
+            shuffle=False,
         )
 
     def transfer_batch_to_device(self, batch: Any, device: torch.device) -> Any:

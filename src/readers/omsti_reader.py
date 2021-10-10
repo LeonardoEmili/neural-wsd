@@ -4,15 +4,16 @@ from omegaconf import DictConfig
 from tqdm import tqdm
 import hydra
 
+
 class SemCorReader(object):
     data = []
     inst2wn = dict()
 
     @classmethod
-    def read(cls, data_path: str, key_path : str, cached: Optional[Any] = None):
+    def read(cls, data_path: str, key_path: str, cached: Optional[Any] = None):
         if cached and isinstance(cached, list):
             cls.data = cached
-        
+
         if not len(cls.data):
             cls._load_key(path=key_path)
             cls._load_xml(path=data_path)
@@ -28,7 +29,9 @@ class SemCorReader(object):
         if len(omsti_corpus) not in idxs:
             idxs.append(len(omsti_corpus))
 
-        corpora = [xml_header + "".join(omsti_corpus[i:j]) for i, j in zip(idxs, idxs[1:])]
+        corpora = [
+            xml_header + "".join(omsti_corpus[i:j]) for i, j in zip(idxs, idxs[1:])
+        ]
         path, ext = path.rsplit(".", 1)
         for k, corpus in enumerate(corpora):
             corpus_path = f"{path}_{k}.{ext}"
@@ -52,7 +55,11 @@ class SemCorReader(object):
                 words.append(word.text)
                 if word.tag == "instance":
                     # Store id, lemma, POS tags for instances
-                    _id, _lemma, _pos = word.attrib["id"], word.attrib["lemma"], word.attrib["pos"]
+                    _id, _lemma, _pos = (
+                        word.attrib["id"],
+                        word.attrib["lemma"],
+                        word.attrib["pos"],
+                    )
                     instance_idxs.append(j)
                     instance_ids.append(_id)
                     instance_senses.append(cls.inst2wn[_id])
