@@ -63,17 +63,33 @@ class BasePLDataModule(pl.LightningDataModule):
 
     def setup(self, stage: Optional[str] = None):
         self.tokenizer = AutoTokenizer.from_pretrained(self.conf.model.tokenizer)
-        self.train_ds = SenseAnnotatedDataset(self.conf, name='semcor', tokenizer=self.tokenizer)
-        print(self.train_ds[0])
+        self.train_dataset = SenseAnnotatedDataset(self.conf, name='semcor', tokenizer=self.tokenizer)
+        #self.valid_dataset = SenseAnnotatedDataset(self.conf, name='semeval2007', tokenizer=self.tokenizer)
+        #self.test_dataset = SenseAnnotatedDataset(self.conf, name='semevalALL', tokenizer=self.tokenizer)
 
     def train_dataloader(self, *args, **kwargs) -> DataLoader:
-        raise NotImplementedError
+        return DataLoader(
+            self.train_dataset,
+            num_workers=self.conf.data.num_workers,
+            batch_size=self.conf.data.batch_size,
+            shuffle=True
+        )
 
     def val_dataloader(self, *args, **kwargs) -> Union[DataLoader, List[DataLoader]]:
-        raise NotImplementedError
+        return DataLoader(
+            self.valid_dataset,
+            num_workers=self.conf.data.num_workers,
+            batch_size=self.conf.data.batch_size,
+            shuffle=False
+        )
 
     def test_dataloader(self, *args, **kwargs) -> Union[DataLoader, List[DataLoader]]:
-        raise NotImplementedError
+        return DataLoader(
+            self.test_dataset,
+            num_workers=self.conf.data.num_workers,
+            batch_size=self.conf.data.batch_size,
+            shuffle=False
+        )
 
     def transfer_batch_to_device(self, batch: Any, device: torch.device) -> Any:
         raise NotImplementedError
