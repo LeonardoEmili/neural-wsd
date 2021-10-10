@@ -1,3 +1,1 @@
-# @package _group_
-
-model_feature: 'fantastic_model_feature'
+tokenizer: 'bert-base-cased'

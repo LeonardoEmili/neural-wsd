@@ -16,6 +16,8 @@ def train(conf: omegaconf.DictConfig) -> None:
 
     # data module declaration
     pl_data_module = BasePLDataModule(conf)
+    pl_data_module.setup()
+    return
 
     # main module declaration
     pl_module = BasePLModule(conf)

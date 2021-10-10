@@ -1,8 +1,12 @@
-# @package _group_
-
 train_path: 'data/train.tsv'
 validation_path: 'data/validation.tsv'
 test_path: 'data/test.tsv'
+
+train_ds: 'semcor'
+semcor_data_path: 'data/WSD_Training_Corpora/SemCor/semcor.data.xml'
+semcor_key_path: 'data/WSD_Training_Corpora/SemCor/semcor.gold.key.txt'
+semcor_omsti_data_path: 'data/WSD_Training_Corpora/SemCor+OMSTI/semcor+omsti.data.xml'
+semcor_omsti_key_path: 'data/WSD_Training_Corpora/SemCor+OMSTI/semcor+omsti.gold.key.txt'
 
 batch_size: 16
 num_workers: 1

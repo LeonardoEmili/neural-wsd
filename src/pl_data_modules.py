@@ -6,6 +6,11 @@ import torch
 from torch.utils.data import DataLoader
 import pytorch_lightning as pl
 
+from src.dataset import SenseAnnotatedDataset
+
+from transformers import AutoTokenizer
+
+
 
 class BasePLDataModule(pl.LightningDataModule):
     """
@@ -57,7 +62,9 @@ class BasePLDataModule(pl.LightningDataModule):
         raise NotImplementedError
 
     def setup(self, stage: Optional[str] = None):
-        raise NotImplementedError
+        self.tokenizer = AutoTokenizer.from_pretrained(self.conf.model.tokenizer)
+        self.train_ds = SenseAnnotatedDataset(self.conf, name='semcor', tokenizer=self.tokenizer)
+        print(self.train_ds[0])
 
     def train_dataloader(self, *args, **kwargs) -> DataLoader:
         raise NotImplementedError
