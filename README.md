@@ -11,8 +11,8 @@
 
 This repo contains all the code used for the assignment of the course Applied Deep Learning at Vienna University of Technology. To encourage best practices and promote code quality, we leverage the [PyTorch Lightning Template](https://github.com/edobobo/p-lightning-template) to avoid writing boilerplate code. All the experiments are logged using [Weights & Biases](https://wandb.ai/site). To have a quick overview of the status of this project visit the related [project board](https://github.com/LeonardoEmili/neural-wsd/projects/1).
 
-## Project description
-The documentation related to this project is available at `docs/`.
+## Project documentation
+The documentation related to this project is available in the [Wiki](https://github.com/LeonardoEmili/neural-wsd/wiki).
 
 ## Repository Structure
 ```
