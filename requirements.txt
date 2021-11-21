@@ -2,5 +2,8 @@ pytorch-lightning==1.2.5
 torch==1.8.1
 nltk==3.4.5
 hydra-core==1.1.0.dev5
-wandb==0.10.31
-transformers==4.9.1
+wandb==0.12.6
+transformers==4.12.3
+torchtext==0.9.1
+black==21.9b0
+python-dotenv==0.19.1

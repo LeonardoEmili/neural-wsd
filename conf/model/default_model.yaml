@@ -1,1 +1,25 @@
 tokenizer: 'bert-base-cased'
+model_name: 'bert-base-cased'
+learning_rate: 1e-3
+min_learning_rate: 1e-4
+language_model_learning_rate: 1e-5
+language_model_min_learning_rate: 1e-6
+language_model_weight_decay: 1e-4
+use_lemma_mask: False
+use_lexeme_mask: False
+
+word_encoder:
+  _target_: src.layers.word_encoder.WordEncoder
+  fine_tune: False
+  word_dropout: 0.2
+  model_name: ${model.model_name}
+
+sequence_encoder: lstm
+lstm_encoder:
+  _target_: torch.nn.LSTM
+  input_size: 512
+  hidden_size: 256
+  bidirectional: True
+  batch_first: True
+  num_layers: 2
+  dropout: 0.40

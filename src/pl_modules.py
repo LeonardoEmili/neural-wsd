@@ -1,38 +1,67 @@
-from typing import Any
+from collections import defaultdict
+from typing import Optional
 
+from pytorch_lightning.metrics.functional import f1 as f1_score
+from omegaconf import DictConfig
+from torch import nn
+import torch.nn.functional as F
 import pytorch_lightning as pl
 import torch
 
+from src.layers.word_encoder import WordEncoder
+from src.utils.torch_utilities import RAdam
+from src.models.wsd_model import WSDModel
+
 
 class BasePLModule(pl.LightningModule):
-    def __init__(self, conf, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-        self.save_hyperparameters(conf)
+    def __init__(
+        self,
+        conf: DictConfig,
+        n_classes: int,
+        *args,
+        **kwargs,
+    ) -> None:
+        super().__init__()
+        self.conf = conf
+        self.n_classes = n_classes
+        self.loss_function = nn.CrossEntropyLoss()
+        self.save_hyperparameters({**dict(conf), "n_classes": n_classes})
+        self.model = WSDModel(conf, n_classes=n_classes)
 
-    def forward(self, **kwargs) -> dict:
-        """
-        Method for the forward pass.
-        'training_step', 'validation_step' and 'test_step' should call
-        this method in order to compute the output predictions and the loss.
+    def _evaluate(self, x: dict[str, torch.Tensor], logits_: torch.Tensor, labels: torch.Tensor):
+        mask = labels != 0
+        logits, labels = logits_[mask], labels[mask]
+        loss = F.cross_entropy(logits, labels)
 
-        Returns:
-            output_dict: forward output containing the predictions (output logits ecc...) and the loss if any.
+        if "sense_mask" in x:
+            logits_.masked_fill_(~x["sense_mask"], float("-inf"))
 
-        """
-        output_dict = {}
-        return output_dict
+        annotation = torch.argmax(logits_[mask], dim=-1)
+        f1_micro = f1_score(annotation, labels, num_classes=self.n_classes, average="micro")
+        return f1_micro, loss
 
-    def training_step(self, batch: dict, batch_idx: int) -> torch.Tensor:
-        forward_output = self.forward(**batch)
-        self.log("loss", forward_output["loss"])
-        return forward_output["loss"]
+    def _shared_step(self, x: dict[str, torch.Tensor]):
+        logits = self.model(x)
+        f1_micro, loss = self._evaluate(x, logits, labels=x["senses"])
+        return f1_micro, loss
 
-    def validation_step(self, batch: dict, batch_idx: int) -> None:
-        forward_output = self.forward(**batch)
-        self.log("val_loss", forward_output["loss"])
+    def training_step(self, x: dict, batch_idx: int) -> dict:
+        f1_micro, loss = self._shared_step(x)
+        metrics = {"f1_micro": f1_micro, "loss": loss}
+        self.log_dict(metrics, on_step=False, on_epoch=True)
+        return metrics
 
-    def test_step(self, batch: dict, batch_idx: int) -> Any:
-        raise NotImplementedError
+    def validation_step(self, x: dict, batch_idx: int) -> dict:
+        f1_micro, loss = self._shared_step(x)
+        metrics = {"val_f1_micro": f1_micro, "val_loss": loss}
+        self.log_dict(metrics, on_step=False, on_epoch=True, prog_bar=True)
+        return metrics
+
+    def test_step(self, x: dict, batch_idx: int) -> dict:
+        f1_micro, loss = self._shared_step(x)
+        metrics = {"test_f1_micro": f1_micro, "test_loss": loss}
+        self.log_dict(metrics, on_step=False, on_epoch=True)
+        return metrics
 
     def configure_optimizers(self):
         """
@@ -51,5 +80,9 @@ class BasePLModule(pl.LightningModule):
               key whose value is a single LR scheduler or lr_dict.
             - Tuple of dictionaries as described, with an optional 'frequency' key.
             - None - Fit will run without any optimizer.
+            loss avg 3.650 - f1 avg 00255
         """
-        raise NotImplementedError
+
+        # return RAdam(self.parameters())
+        optimizer = torch.optim.Adam(self.parameters(), lr=self.conf.model.learning_rate)
+        return optimizer

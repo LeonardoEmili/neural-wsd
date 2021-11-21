@@ -1,0 +1,123 @@
+# Debug mode
+debug: False
+max_samples: 1000
+
+model:
+  tokenizer: 'bert-base-cased' # 'bert-base-cased'
+  model_name: 'bert-base-cased'
+  learning_rate: 1e-3 # 5e-4
+  min_learning_rate: 1e-4
+  language_model_learning_rate: 1e-5
+  language_model_min_learning_rate: 1e-6
+  language_model_weight_decay: 1e-4
+  use_lemma_mask: False
+  use_lexeme_mask: False
+
+  word_encoder:
+    _target_: src.layers.word_encoder.WordEncoder
+    fine_tune: False
+    word_dropout: 0.2
+    model_name: ${model.model_name}
+
+  sequence_encoder: lstm
+  lstm_encoder:
+    _target_: torch.nn.LSTM
+    input_size: 512
+    hidden_size: 256
+    bidirectional: True
+    batch_first: True
+    num_layers: 2
+    dropout: 0.40
+
+test:
+  checkpoint_path: <MODEL_CHECKPOINT_PATH>
+  latest_checkpoint_path: experiments/bert-base-cased/2021-11-13/16-39-09/default_name/epoch=0-step=580.ckpt
+  use_latest: false
+
+train:
+  # reproducibility
+  seed: 42
+
+  # experiment name
+  experiment_name: default_name
+
+  # pl_trainer
+  pl_trainer:
+    _target_: pytorch_lightning.Trainer
+    gpus: 1
+    #accumulate_grad_batches: 1 # 8
+    #gradient_clip_val: 10.0
+    #val_check_interval: 1.0  # you can specify an int "n" here => validation every "n" steps
+    max_epochs: 20
+    fast_dev_run: False
+    #max_steps: 100_000
+    # uncomment the lines below for training with mixed precision
+    #precision: 16
+    #amp_level: O2
+
+  # early stopping callback
+  # "early_stopping_callback: null" will disable early stopping
+  early_stopping_callback:
+    _target_: pytorch_lightning.callbacks.EarlyStopping
+    monitor: val_f1_micro
+    mode: max
+    patience: 50
+
+  # model_checkpoint_callback
+  # "model_checkpoint_callback: null" will disable model checkpointing
+  model_checkpoint_callback:
+    _target_: pytorch_lightning.callbacks.ModelCheckpoint
+    monitor: val_f1_micro
+    mode: max
+    verbose: True
+    save_top_k: 5
+    dirpath: ${train.experiment_name}/
+
+data:
+  train_path: "data/train.tsv"
+  validation_path: "data/validation.tsv"
+  test_path: "data/test.tsv"
+
+  train_ds: "semcor"
+  val_ds: "semeval2007"
+  test_ds: "semeval2015"
+
+  preprocessed_dir: "data/preprocessed/"
+  force_preprocessing: False
+  dump_preprocessed: True
+
+  corpora:
+    semcor:
+      data_path: "data/WSD_Training_Corpora/SemCor/semcor.data.xml"
+      key_path: "data/WSD_Training_Corpora/SemCor/semcor.gold.key.txt"
+    semcor+omsti:
+      data_path: "data/WSD_Training_Corpora/SemCor+OMSTI/semcor+omsti.data.xml"
+      key_path: "data/WSD_Training_Corpora/SemCor+OMSTI/semcor+omsti.gold.key.txt"
+    omsti:
+      data_path: "data/WSD_Training_Corpora/SemCor+OMSTI/semcor+omsti.data.xml"
+      key_path: "data/WSD_Training_Corpora/SemCor+OMSTI/semcor+omsti.gold.key.txt"
+    semeval_all:
+      data_path: "data/WSD_Unified_Evaluation_Datasets/ALL/ALL.data.xml"
+      key_path: "data/WSD_Unified_Evaluation_Datasets/ALL/ALL.gold.key.txt"
+    semeval2007:
+      data_path: "data/WSD_Unified_Evaluation_Datasets/semeval2007/semeval2007.data.xml"
+      key_path: "data/WSD_Unified_Evaluation_Datasets/semeval2007/semeval2007.gold.key.txt"
+    semeval2013:
+      data_path: "data/WSD_Unified_Evaluation_Datasets/semeval2013/semeval2013.data.xml"
+      key_path: "data/WSD_Unified_Evaluation_Datasets/semeval2013/semeval2013.gold.key.txt"
+    semeval2015:
+      data_path: "data/WSD_Unified_Evaluation_Datasets/semeval2015/semeval2015.data.xml"
+      key_path: "data/WSD_Unified_Evaluation_Datasets/semeval2015/semeval2015.gold.key.txt"
+    senseval2:
+      data_path: "data/WSD_Unified_Evaluation_Datasets/senseval2/senseval2.data.xml"
+      key_path: "data/WSD_Unified_Evaluation_Datasets/senseval2/senseval2.gold.key.txt"
+    senseval3:
+      data_path: "data/WSD_Unified_Evaluation_Datasets/senseval3/senseval3.data.xml"
+      key_path: "data/WSD_Unified_Evaluation_Datasets/senseval3/senseval3.gold.key.txt"
+
+  batch_size: 64
+  num_workers: 0
+
+  min_freq_senses: 1
+  allow_multiple_senses: False
+

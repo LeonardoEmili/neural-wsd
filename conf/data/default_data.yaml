@@ -1,12 +1,53 @@
-train_path: 'data/train.tsv'
-validation_path: 'data/validation.tsv'
-test_path: 'data/test.tsv'
+train_path: "data/train.tsv"
+validation_path: "data/validation.tsv"
+test_path: "data/test.tsv"
 
-train_ds: 'semcor'
-semcor_data_path: 'data/WSD_Training_Corpora/SemCor/semcor.data.xml'
-semcor_key_path: 'data/WSD_Training_Corpora/SemCor/semcor.gold.key.txt'
-semcor_omsti_data_path: 'data/WSD_Training_Corpora/SemCor+OMSTI/semcor+omsti.data.xml'
-semcor_omsti_key_path: 'data/WSD_Training_Corpora/SemCor+OMSTI/semcor+omsti.gold.key.txt'
+train_ds: "semcor"
+val_ds: "semeval2007"
+test_ds: "semeval2015"
 
-batch_size: 16
-num_workers: 1
+preprocessed_dir: "data/preprocessed/"
+force_preprocessing: False
+dump_preprocessed: True
+use_synset_vocab: True
+
+wordnet:
+  glosses: "data/wordnet/means/glosses.json"
+  lemma_means: "data/wordnet/means/lemma_means.json"
+  lexeme_means: "data/wordnet/means/lexeme_means.json"
+  sense_means: "data/wordnet/means/sense_means.json"
+
+corpora:
+  semcor:
+    data_path: "data/WSD_Training_Corpora/SemCor/semcor.data.xml"
+    key_path: "data/WSD_Training_Corpora/SemCor/semcor.gold.key.txt"
+  semcor+omsti:
+    data_path: "data/WSD_Training_Corpora/SemCor+OMSTI/semcor+omsti.data.xml"
+    key_path: "data/WSD_Training_Corpora/SemCor+OMSTI/semcor+omsti.gold.key.txt"
+  omsti:
+    data_path: "data/WSD_Training_Corpora/SemCor+OMSTI/semcor+omsti.data.xml"
+    key_path: "data/WSD_Training_Corpora/SemCor+OMSTI/semcor+omsti.gold.key.txt"
+  semeval_all:
+    data_path: "data/WSD_Unified_Evaluation_Datasets/ALL/ALL.data.xml"
+    key_path: "data/WSD_Unified_Evaluation_Datasets/ALL/ALL.gold.key.txt"
+  semeval2007:
+    data_path: "data/WSD_Unified_Evaluation_Datasets/semeval2007/semeval2007.data.xml"
+    key_path: "data/WSD_Unified_Evaluation_Datasets/semeval2007/semeval2007.gold.key.txt"
+  semeval2013:
+    data_path: "data/WSD_Unified_Evaluation_Datasets/semeval2013/semeval2013.data.xml"
+    key_path: "data/WSD_Unified_Evaluation_Datasets/semeval2013/semeval2013.gold.key.txt"
+  semeval2015:
+    data_path: "data/WSD_Unified_Evaluation_Datasets/semeval2015/semeval2015.data.xml"
+    key_path: "data/WSD_Unified_Evaluation_Datasets/semeval2015/semeval2015.gold.key.txt"
+  senseval2:
+    data_path: "data/WSD_Unified_Evaluation_Datasets/senseval2/senseval2.data.xml"
+    key_path: "data/WSD_Unified_Evaluation_Datasets/senseval2/senseval2.gold.key.txt"
+  senseval3:
+    data_path: "data/WSD_Unified_Evaluation_Datasets/senseval3/senseval3.data.xml"
+    key_path: "data/WSD_Unified_Evaluation_Datasets/senseval3/senseval3.gold.key.txt"
+
+batch_size: 32
+num_workers: 0
+
+min_freq_senses: 1
+allow_multiple_senses: False

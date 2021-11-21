@@ -1,0 +1,3 @@
+checkpoint_path: <MODEL_CHECKPOINT_PATH>
+latest_checkpoint_path: experiments/bert-base-cased/2021-11-16/23-06-26/default_name/epoch=2-step=3485.ckpt
+use_latest: false
