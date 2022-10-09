@@ -1,0 +1,122 @@
+2021-12-24T11:26:57.000000+00:00 app[api]: Build started by user leonardo.emili3@gmail.com
+2021-12-24T11:30:04.774128+00:00 heroku[web.1]: Restarting
+2021-12-24T11:30:04.809046+00:00 heroku[web.1]: State changed from up to starting
+2021-12-24T11:30:05.505806+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2021-12-24T11:30:05.542665+00:00 app[web.1]:   Stopping...
+2021-12-24T11:30:04.518193+00:00 app[api]: Release v5 created by user leonardo.emili3@gmail.com
+2021-12-24T11:30:05.933798+00:00 heroku[router]: at=info method=GET path="/stream" host=neural-wsd.herokuapp.com request_id=4f75f25a-63b2-439c-b3a6-39a3d2ad8d59 fwd="2.39.113.12" dyno=web.1 connect=0ms service=844127ms status=101 bytes=344 protocol=https
+2021-12-24T11:30:04.518193+00:00 app[api]: Deploy ff88c5e6 by user leonardo.emili3@gmail.com
+2021-12-24T11:30:06.205326+00:00 heroku[web.1]: Process exited with status 0
+2021-12-24T11:30:24.382277+00:00 heroku[web.1]: Starting process with command `sh src/ui/setup.sh && python -m streamlit.cli run src/ui/app.py`
+2021-12-24T11:30:26.985236+00:00 app[web.1]: Collecting en-core-web-sm==3.2.0
+2021-12-24T11:30:27.157289+00:00 app[web.1]:   Downloading https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.2.0/en_core_web_sm-3.2.0-py3-none-any.whl (13.9 MB)
+2021-12-24T11:30:27.441188+00:00 app[web.1]: Requirement already satisfied: spacy<3.3.0,>=3.2.0 in ./.heroku/python/lib/python3.9/site-packages (from en-core-web-sm==3.2.0) (3.2.1)
+2021-12-24T11:30:27.511426+00:00 app[web.1]: Requirement already satisfied: preshed<3.1.0,>=3.0.2 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (3.0.6)
+2021-12-24T11:30:27.511677+00:00 app[web.1]: Requirement already satisfied: setuptools in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (57.5.0)
+2021-12-24T11:30:27.512222+00:00 app[web.1]: Requirement already satisfied: spacy-loggers<2.0.0,>=1.0.0 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (1.0.1)
+2021-12-24T11:30:27.512689+00:00 app[web.1]: Requirement already satisfied: wasabi<1.1.0,>=0.8.1 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (0.9.0)
+2021-12-24T11:30:27.513178+00:00 app[web.1]: Requirement already satisfied: thinc<8.1.0,>=8.0.12 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (8.0.13)
+2021-12-24T11:30:27.513660+00:00 app[web.1]: Requirement already satisfied: srsly<3.0.0,>=2.4.1 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (2.4.2)
+2021-12-24T11:30:27.514320+00:00 app[web.1]: Requirement already satisfied: langcodes<4.0.0,>=3.2.0 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (3.3.0)
+2021-12-24T11:30:27.514797+00:00 app[web.1]: Requirement already satisfied: catalogue<2.1.0,>=2.0.6 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (2.0.6)
+2021-12-24T11:30:27.515271+00:00 app[web.1]: Requirement already satisfied: typer<0.5.0,>=0.3.0 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (0.4.0)
+2021-12-24T11:30:27.515776+00:00 app[web.1]: Requirement already satisfied: spacy-legacy<3.1.0,>=3.0.8 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (3.0.8)
+2021-12-24T11:30:27.516468+00:00 app[web.1]: Requirement already satisfied: cymem<2.1.0,>=2.0.2 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (2.0.6)
+2021-12-24T11:30:27.516939+00:00 app[web.1]: Requirement already satisfied: packaging>=20.0 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (21.3)
+2021-12-24T11:30:27.517389+00:00 app[web.1]: Requirement already satisfied: numpy>=1.15.0 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (1.21.5)
+2021-12-24T11:30:27.517871+00:00 app[web.1]: Requirement already satisfied: tqdm<5.0.0,>=4.38.0 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (4.62.3)
+2021-12-24T11:30:27.518536+00:00 app[web.1]: Requirement already satisfied: requests<3.0.0,>=2.13.0 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (2.26.0)
+2021-12-24T11:30:27.518766+00:00 app[web.1]: Requirement already satisfied: jinja2 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (3.0.3)
+2021-12-24T11:30:27.519274+00:00 app[web.1]: Requirement already satisfied: pathy>=0.3.5 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (0.6.1)
+2021-12-24T11:30:27.519805+00:00 app[web.1]: Requirement already satisfied: blis<0.8.0,>=0.4.0 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (0.7.5)
+2021-12-24T11:30:27.520370+00:00 app[web.1]: Requirement already satisfied: pydantic!=1.8,!=1.8.1,<1.9.0,>=1.7.4 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (1.8.2)
+2021-12-24T11:30:27.520876+00:00 app[web.1]: Requirement already satisfied: murmurhash<1.1.0,>=0.28.0 in ./.heroku/python/lib/python3.9/site-packages (from spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (1.0.6)
+2021-12-24T11:30:27.533236+00:00 app[web.1]: Requirement already satisfied: pyparsing!=3.0.5,>=2.0.2 in ./.heroku/python/lib/python3.9/site-packages (from packaging>=20.0->spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (3.0.6)
+2021-12-24T11:30:27.547145+00:00 app[web.1]: Requirement already satisfied: smart-open<6.0.0,>=5.0.0 in ./.heroku/python/lib/python3.9/site-packages (from pathy>=0.3.5->spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (5.2.1)
+2021-12-24T11:30:27.555832+00:00 app[web.1]: Requirement already satisfied: typing-extensions>=3.7.4.3 in ./.heroku/python/lib/python3.9/site-packages (from pydantic!=1.8,!=1.8.1,<1.9.0,>=1.7.4->spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (4.0.1)
+2021-12-24T11:30:27.568957+00:00 app[web.1]: Requirement already satisfied: urllib3<1.27,>=1.21.1 in ./.heroku/python/lib/python3.9/site-packages (from requests<3.0.0,>=2.13.0->spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (1.26.7)
+2021-12-24T11:30:27.569493+00:00 app[web.1]: Requirement already satisfied: certifi>=2017.4.17 in ./.heroku/python/lib/python3.9/site-packages (from requests<3.0.0,>=2.13.0->spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (2021.10.8)
+2021-12-24T11:30:27.570671+00:00 app[web.1]: Requirement already satisfied: idna<4,>=2.5 in ./.heroku/python/lib/python3.9/site-packages (from requests<3.0.0,>=2.13.0->spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (3.3)
+2021-12-24T11:30:27.571967+00:00 app[web.1]: Requirement already satisfied: charset-normalizer~=2.0.0 in ./.heroku/python/lib/python3.9/site-packages (from requests<3.0.0,>=2.13.0->spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (2.0.9)
+2021-12-24T11:30:27.634379+00:00 app[web.1]: Requirement already satisfied: click<9.0.0,>=7.1.1 in ./.heroku/python/lib/python3.9/site-packages (from typer<0.5.0,>=0.3.0->spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (7.1.2)
+2021-12-24T11:30:27.641506+00:00 app[web.1]: Requirement already satisfied: MarkupSafe>=2.0 in ./.heroku/python/lib/python3.9/site-packages (from jinja2->spacy<3.3.0,>=3.2.0->en-core-web-sm==3.2.0) (2.0.1)
+2021-12-24T11:30:28.873721+00:00 app[web.1]: Installing collected packages: en-core-web-sm
+2021-12-24T11:30:29.034773+00:00 app[web.1]: Successfully installed en-core-web-sm-3.2.0
+2021-12-24T11:30:29.321635+00:00 app[web.1]: [38;5;2m✔ Download and installation successful[0m
+2021-12-24T11:30:29.321651+00:00 app[web.1]: You can now load the package via spacy.load('en_core_web_sm')
+2021-12-24T11:30:30.943843+00:00 app[web.1]: Downloading...
+2021-12-24T11:30:30.943852+00:00 app[web.1]: From: https://drive.google.com/uc?id=1AvLBaLLdT8MeCQNbSx2FxiT5y7cDtVsE
+2021-12-24T11:30:30.943882+00:00 app[web.1]: To: /app/wsd_model.ckpt
+2021-12-24T11:30:54.233419+00:00 app[web.1]: 
+2021-12-24T11:30:54.233419+00:00 app[web.1]: G [00:22<00:00, 70.8MB/s]
+2021-12-24T11:30:54.506563+00:00 app[web.1]: conf
+2021-12-24T11:30:54.506570+00:00 app[web.1]: data
+2021-12-24T11:30:54.506571+00:00 app[web.1]: docs
+2021-12-24T11:30:54.506571+00:00 app[web.1]: experiments
+2021-12-24T11:30:54.506571+00:00 app[web.1]: Procfile
+2021-12-24T11:30:54.506571+00:00 app[web.1]: pyproject.toml
+2021-12-24T11:30:54.506572+00:00 app[web.1]: README.md
+2021-12-24T11:30:54.506572+00:00 app[web.1]: requirements.txt
+2021-12-24T11:30:54.506573+00:00 app[web.1]: runtime.txt
+2021-12-24T11:30:54.506573+00:00 app[web.1]: setup.sh
+2021-12-24T11:30:54.506573+00:00 app[web.1]: src
+2021-12-24T11:30:54.506574+00:00 app[web.1]: tests
+2021-12-24T11:30:54.506574+00:00 app[web.1]: wsd_model.ckpt
+2021-12-24T11:30:56.327319+00:00 heroku[web.1]: State changed from starting to up
+2021-12-24T11:30:56.164442+00:00 app[web.1]: 2021-12-24 11:30:56.164 
+2021-12-24T11:30:56.164457+00:00 app[web.1]: Warning: the config option 'server.enableCORS=false' is not compatible with 'server.enableXsrfProtection=true'.
+2021-12-24T11:30:56.164457+00:00 app[web.1]: As a result, 'server.enableCORS' is being overridden to 'true'.
+2021-12-24T11:30:56.164458+00:00 app[web.1]: 
+2021-12-24T11:30:56.164458+00:00 app[web.1]: More information:
+2021-12-24T11:30:56.164459+00:00 app[web.1]: In order to protect against CSRF attacks, we send a cookie with each request.
+2021-12-24T11:30:56.164460+00:00 app[web.1]: To do so, we must specify allowable origins, which places a restriction on
+2021-12-24T11:30:56.164460+00:00 app[web.1]: cross-origin resource sharing.
+2021-12-24T11:30:56.164460+00:00 app[web.1]: 
+2021-12-24T11:30:56.164461+00:00 app[web.1]: If cross origin resource sharing is required, please disable server.enableXsrfProtection.
+2021-12-24T11:30:56.164461+00:00 app[web.1]:             
+2021-12-24T11:30:56.506708+00:00 app[web.1]: 2021-12-24 11:30:56.506 Trying to detect encoding from a tiny portion of (13) byte(s).
+2021-12-24T11:30:56.508809+00:00 app[web.1]: 2021-12-24 11:30:56.508 ascii passed initial chaos probing. Mean measured chaos is 0.000000 %
+2021-12-24T11:30:56.509199+00:00 app[web.1]: 2021-12-24 11:30:56.509 ascii should target any language(s) of ['Latin Based']
+2021-12-24T11:30:56.509421+00:00 app[web.1]: 2021-12-24 11:30:56.509 ascii is most likely the one. Stopping the process.
+2021-12-24T11:30:56.509652+00:00 app[web.1]: 
+2021-12-24T11:30:56.509709+00:00 app[web.1]:   You can now view your Streamlit app in your browser.
+2021-12-24T11:30:56.509742+00:00 app[web.1]: 
+2021-12-24T11:30:56.510630+00:00 app[web.1]:   Network URL: http://172.19.54.38:12154
+2021-12-24T11:30:56.510756+00:00 app[web.1]:   External URL: http://50.19.161.70:12154
+2021-12-24T11:30:56.510992+00:00 app[web.1]: 
+2021-12-24T11:30:56.830819+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=5c15397e-bdd6-4c3e-a296-d9362ff4fe3d fwd="2.39.113.12" dyno=web.1 connect=0ms service=6ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:56.912940+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=10ca843f-5dc6-42fe-a4a7-6b393209d571 fwd="2.39.113.12" dyno=web.1 connect=0ms service=3ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:57.053256+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=9c9ba680-303b-45f1-ad16-2a3cf5b13fb3 fwd="2.39.113.12" dyno=web.1 connect=0ms service=3ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:57.057077+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=122e8610-5cfc-4c1d-91d3-4f92fa1dc5d1 fwd="2.39.113.12" dyno=web.1 connect=0ms service=2ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:57.054931+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=3eb3b198-45b5-4699-a510-33d02cd55070 fwd="2.39.113.12" dyno=web.1 connect=0ms service=4ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:57.173263+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=0813a2f4-b8ef-4948-b497-ad99a6801e7c fwd="2.39.113.12" dyno=web.1 connect=0ms service=3ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:57.132186+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=e9f97812-370e-49c7-add7-ff19ee2afedb fwd="2.39.113.12" dyno=web.1 connect=0ms service=2ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:57.098953+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=7c3388ad-8983-435e-96c4-17e1c67cba5e fwd="2.39.113.12" dyno=web.1 connect=0ms service=22ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:57.109252+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=c623e633-7f0b-4ce5-a6f7-9dd654dbb9a3 fwd="2.39.113.12" dyno=web.1 connect=0ms service=1ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:57.110430+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=f1cdd100-a344-43f1-9698-fc8635b49076 fwd="2.39.113.12" dyno=web.1 connect=0ms service=1ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:57.160639+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=8d14fe75-3228-4881-8b29-6d12f27c2614 fwd="2.39.113.12" dyno=web.1 connect=0ms service=5ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:57.697592+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=f8185d39-8af1-402a-800f-c185f7c368b3 fwd="2.39.113.12" dyno=web.1 connect=0ms service=2ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:57.752410+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=6a383fc9-a07c-46c0-b3cd-06bd267ce985 fwd="2.39.113.12" dyno=web.1 connect=0ms service=2ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:57.963721+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=16d3a6c9-9be4-4d19-b2f2-c19bd020d880 fwd="2.39.113.12" dyno=web.1 connect=0ms service=31ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:57.961281+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=7ea57c1d-bab5-48f7-bc74-0646b765d26c fwd="2.39.113.12" dyno=web.1 connect=0ms service=7ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:58.188777+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=c3c77072-aaf5-4a68-89dc-7aff02dd4a48 fwd="2.39.113.12" dyno=web.1 connect=0ms service=3ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:57.099250+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=900c77b0-6641-4590-b079-35c8bb0b99e2 fwd="2.39.113.12" dyno=web.1 connect=0ms service=21ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:58.777043+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=4e7f6490-443a-49dd-9d4c-02b28232c558 fwd="2.39.113.12" dyno=web.1 connect=0ms service=31ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:58.845096+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=385eb9bd-cfd6-40db-b836-c0d2e1c36df7 fwd="2.39.113.12" dyno=web.1 connect=0ms service=50ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:58.895131+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=b9d4637c-f826-4f18-bc13-b5b2d8c49a03 fwd="2.39.113.12" dyno=web.1 connect=0ms service=13ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:58.892867+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=100b4b0d-6b8f-463c-9984-11a018a1d23b fwd="2.39.113.12" dyno=web.1 connect=0ms service=59ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:59.370978+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=315728d5-587c-4fdb-a7e5-83a2a845cb1e fwd="2.39.113.12" dyno=web.1 connect=0ms service=354ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:59.397378+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=dbb0ec32-57d9-463d-ae64-ce774f52a0b3 fwd="2.39.113.12" dyno=web.1 connect=0ms service=279ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:59.424926+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=d01e5aa6-b5d0-4414-8250-532583f6c13e fwd="2.39.113.12" dyno=web.1 connect=0ms service=252ms status=200 bytes=375 protocol=https
+2021-12-24T11:31:00.053937+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=4b3f9cef-2577-493c-a684-96ffb5f05678 fwd="2.39.113.12" dyno=web.1 connect=0ms service=2ms status=200 bytes=375 protocol=https
+2021-12-24T11:30:58.093965+00:00 heroku[router]: at=info method=GET path="/healthz" host=neural-wsd.herokuapp.com request_id=1e19f8a3-cbc1-4f37-8002-0a8609c35d6f fwd="2.39.113.12" dyno=web.1 connect=0ms service=10ms status=200 bytes=375 protocol=https
+2021-12-24T11:31:01.878984+00:00 heroku[web.1]: Process running mem=613M(119.9%)
+2021-12-24T11:31:01.880766+00:00 heroku[web.1]: Error R14 (Memory quota exceeded)
+2021-12-24T11:31:01.884629+00:00 heroku[router]: at=info method=GET path="/static/js/29.968fbe3e.chunk.js" host=neural-wsd.herokuapp.com request_id=dbaa468d-cec5-4805-a726-517427360acc fwd="2.39.113.12" dyno=web.1 connect=0ms service=29ms status=200 bytes=1072 protocol=https
+2021-12-24T11:31:06.766121+00:00 heroku[web.1]: Process exited with status 137
+2021-12-24T11:31:06.844269+00:00 heroku[web.1]: State changed from up to crashed
+2021-12-24T11:31:06.859142+00:00 heroku[web.1]: State changed from crashed to starting
+2021-12-24T11:31:06.647610+00:00 heroku[router]: at=info method=GET path="/stream" host=neural-wsd.herokuapp.com request_id=8db34c1f-d26a-4821-8085-4212a01657fe fwd="2.39.113.12" dyno=web.1 connect=0ms service=9230ms status=101 bytes=344 protocol=https
+2021-12-24T11:31:06.582173+00:00 heroku[web.1]: Process running mem=1280M(250.0%)
+2021-12-24T11:31:06.620196+00:00 heroku[web.1]: Error R15 (Memory quota vastly exceeded)
+2021-12-24T11:31:06.645990+00:00 heroku[web.1]: Stopping process with SIGKILL

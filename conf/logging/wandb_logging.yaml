@@ -1,0 +1,10 @@
+log: True
+
+wandb_logger:
+  _target_: pytorch_lightning.loggers.WandbLogger
+  entity: LeonardoEmili
+  project: neural-wsd
+
+watch:
+  log: 'all'
+  log_freq: 100

@@ -1,0 +1,14 @@
+{
+    "python.defaultInterpreterPath": "/root/miniconda3/envs/neural-wsd/bin/python",
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "120"
+    ],
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    }
+}

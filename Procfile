@@ -1,0 +1,1 @@
+web: sh src/ui/setup.sh && python -m streamlit.cli run src/ui/app.py
