@@ -1,0 +1,15 @@
+# Required to make the "experiments" dir the default one for the output of the models
+hydra:
+  run:
+    dir: ./experiments/${model.model_name}/${now:%Y-%m-%d}/${now:%H-%M-%S}
+
+# Debug mode
+debug: False
+max_samples: 1000
+
+defaults:
+  - train: default_train
+  - model: default_model
+  - data: default_data
+  - logging: wandb_logging
+  - test: default_test
